@@ -1,0 +1,19 @@
+.complete{
+    text-decoration: line-through;
+}
+.message{
+    animation: cache 3s forwards;    
+    
+}
+@keyframes cache {
+    0%{
+        opacity: 1;
+    }
+    90%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+
+}

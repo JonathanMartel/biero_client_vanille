@@ -44,24 +44,16 @@ export default class Biere {
 
     
     /**
-     * Récupérer l'ensemble des biere sur le service Web, trié
+     * Récupérer l'ensemble des biere sur le service Web
      *
      * @static
-     * @returns Promise
+     * @returns ?
      * @memberof Biere
      */
      static getListeBieres (){
        
-        const entete = new Headers();
-        entete.append("Content-Type", "application/json");
-
-        const reqOptions = {
-            method: 'GET',
-            headers: entete,
-            redirect: 'follow'
-        };
-        return fetch(this.api_url + "biere", reqOptions)
-            .then(reponse => reponse.json());
+        
+        
     }
 
 }

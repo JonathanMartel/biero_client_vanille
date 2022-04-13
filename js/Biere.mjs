@@ -9,7 +9,6 @@ export default class Biere {
      * @static
      * @memberof Biere
      */
-    //static api_url = "https://api-nodejs-todolist.herokuapp.com/";
     static api_url = "http://127.0.0.1:8000/webservice/php/";
 
     
@@ -50,9 +49,18 @@ export default class Biere {
      * @returns ?
      * @memberof Biere
      */
-     static getListeBieres (){
-       
-        
+    static getListeBieres (){
+        const entete = new Headers();
+        entete.append("Content-Type", "application/json");
+
+        const reqOptions = {
+            method: "GET",
+            headers: entete,
+            redirect : "follow"
+        };
+         //https://developer.mozilla.org/fr/docs/Web/API/Fetch_API
+        fetch(this.api_url + "/biere", reqOptions);
+
         
     }
 

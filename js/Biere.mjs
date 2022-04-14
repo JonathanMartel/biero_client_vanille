@@ -46,10 +46,11 @@ export default class Biere {
      * Récupérer l'ensemble des biere sur le service Web
      *
      * @static
-     * @returns ?
+     * @returns Promise
      * @memberof Biere
      */
     static getListeBieres (){
+        let donnees;
         const entete = new Headers();
         entete.append("Content-Type", "application/json");
 
@@ -59,8 +60,11 @@ export default class Biere {
             redirect : "follow"
         };
          //https://developer.mozilla.org/fr/docs/Web/API/Fetch_API
-        fetch(this.api_url + "/biere", reqOptions);
-
+        return fetch (this.api_url + "/biere", reqOptions)
+            //.then(reponse=>reponse.json())
+            .then((reponse)=>{
+                return reponse.json();
+            });            
         
     }
 

@@ -10,6 +10,19 @@ import page from "//unpkg.com/page/page.mjs";
     })
     page("/liste", ()=>{
         console.log("liste de bière");
+        Biere.getListeBieres().then((listeBiere)=>{
+            console.log(listeBiere); 
+            let DOMListe = document.querySelector(".liste"); 
+            let chaineDOM;
+            chaineDOM = "<ul>";
+            listeBiere.data.forEach(element => {
+                chaineDOM += ("<li>" + element.nom +"</li>");
+            });
+            chaineDOM += "</ul>";
+            DOMListe.innerHTML = chaineDOM;
+
+
+        });
     })
     
     page({
@@ -19,11 +32,7 @@ import page from "//unpkg.com/page/page.mjs";
     // Toujours s'assurer que le DOM est prêt avant de manipuler le HTML.
     document.addEventListener("DOMContentLoaded", ()=>{
         //console.log("Prêt");
-        Biere.getListeBieres().then((listeBiere)=>{
-            console.log(listeBiere);  
-            // Traitement de mes données...
-
-        });
+        
         
 
     })

@@ -1,5 +1,5 @@
 <section id="accueil">
-    <h1>La liste de nos bières</h1>>
+    <h1>La liste de nos bières</h1>
     <aside><p>Trier par : </p>
         <ul>
             <li><a href="">Nom (ASC)</a> / <a href="">Nom (DESC)</a></li>
@@ -14,11 +14,15 @@
                 <th>Brasserie</th>
                 <th>Note</th>
             </tr>
+            {{#data}}
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{nom}}</td>
+                <td>{{brasserie}}</td>
+                <td>{{note_moyenne}}</td>
             </tr>
+            
+            {{/data}}
+            
         </table>
  
     </section>

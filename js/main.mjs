@@ -1,7 +1,11 @@
-/*
- Fichier principal, il contient la logique de l'application.
-
-*/
+/**
+ * Fichier principal, il contient la logique de l'application.
+ * @todo Ajouter l'affichage de la page d'accueil (les 5 meilleures bières, avec les informations de base [nom, brasserie, moyenne, nombre de note])
+ * @todo Compléter la page /liste. Faire fonctionner les tris (nom, brasserie et note [ASC et DESC])
+ * @todo Ajouter une page Détail. Une route supplémentaire /liste/:id_biere qui affiche les détails d'une bière ([nom, brasserie, moyenne, nombre de note, description]) ainsi que les commentaires reçus 
+ * @todo (Bonus mais juste pour des points virtuels) Utiliser les partials (mustache) pour gérer les affichages (accueil et liste)
+ */
+ 
 import Biere from './Biere.mjs';
 import Affichage from './Affichage.mjs';
 import page from "//unpkg.com/page/page.mjs";

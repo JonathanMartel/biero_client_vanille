@@ -1,12 +1,17 @@
+/*
+ Fichier principal, il contient la logique de l'application.
+
+*/
 import Biere from './Biere.mjs';
 import Affichage from './Affichage.mjs';
 import page from "//unpkg.com/page/page.mjs";
 
 // IIFE (Immediatly invoqued function expression)
 (function(){
-    let _app = document.querySelector(".app");
-
-    let _route = [
+    const _app = document.querySelector(".app");
+    
+    // La définition des routes et des callback sur l'appel des routes.
+    const _route = [
         {
             route : "/", 
             cb : cbAccueil
@@ -20,6 +25,7 @@ import page from "//unpkg.com/page/page.mjs";
             cb : cbContact
         },
     ]
+    // Génère la configuration du routeur en traitant l'ensemble des routes du tableau _route.
     _route.forEach((route)=>{
         if(Array.isArray(route.cb)){
             page(route.route, ...route.cb);        
@@ -37,8 +43,10 @@ import page from "//unpkg.com/page/page.mjs";
 
      // Toujours s'assurer que le DOM est prêt avant de manipuler le HTML.
     document.addEventListener("DOMContentLoaded", ()=>{
+        // Affichage de la navigation
         Affichage.chargementTemplate("nav", document.querySelector(".nav"), {});
         
+        // Démarrage du routeur
         page({
             hashbang:true
         });   
@@ -49,12 +57,17 @@ import page from "//unpkg.com/page/page.mjs";
 
     })
 
-
+    /**
+     *  Controlleur de la page d'accueil
+     */
     function cbAccueil(){
         console.log("accueil");
         Affichage.chargementTemplate("accueil", _app, {});
     }
 
+    /**
+     *  Controlleur de la page liste
+     */
     function cbListe(){
         console.log("liste de bière");
         Biere.getListeBieres().then((listeBiere)=>{
@@ -65,10 +78,16 @@ import page from "//unpkg.com/page/page.mjs";
         });
     }
 
+    /**
+     *  Controlleur de la page contact
+     */
     function cbContact(){
         Affichage.chargementTemplate("contact", _app, {});
     }
 
+    /**
+     *  Controlleur médian (middleware) qui gère le "login", ici une case à cocher.
+     */
     function cbLog(ctx, next){
         console.log(ctx, next);
         let log = document.querySelector("[name='log']");

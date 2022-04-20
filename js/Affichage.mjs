@@ -6,7 +6,13 @@
  */
 export default class Affichage {
     static chargement = {};
-
+    /**
+     * Méthode qui charge le fichier template et l'insert dans le dom_parent. La fonction met en cache les templates chargés
+     * @param {String} nomTemplate 
+     * @param {DOMElement} dom_parent 
+     * @param {Object} data 
+     * @memberof Affichage
+     */
     static chargementTemplate(nomTemplate, dom_parent, data){
         if(this.chargement[nomTemplate])
         {

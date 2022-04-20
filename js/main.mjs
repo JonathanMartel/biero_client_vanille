@@ -1,9 +1,10 @@
 /**
  * Fichier principal, il contient la logique de l'application.
  * @todo Ajouter l'affichage de la page d'accueil (les 5 meilleures bières, avec les informations de base [nom, brasserie, moyenne, nombre de note])
- * @todo Compléter la page /liste. Faire fonctionner les tris (nom, brasserie et note [ASC et DESC])
+ * @todo Compléter la page /liste. Faire fonctionner les tris (nom, brasserie et note [ASC et DESC]) en utilisant le module Biere
  * @todo Ajouter une page Détail. Une route supplémentaire /liste/:id_biere qui affiche les détails d'une bière ([nom, brasserie, moyenne, nombre de note, description]) ainsi que les commentaires reçus 
  * @todo (Bonus mais juste pour des points virtuels) Utiliser les partials (mustache) pour gérer les affichages (accueil et liste)
+ * @todo (Bonus mais juste pour des points virtuels) Remplacer mustache.js par handlebar.js
  */
  
 import Biere from './Biere.mjs';

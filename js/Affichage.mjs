@@ -14,19 +14,20 @@ export default class Affichage {
      * @memberof Affichage
      */
     static chargementTemplate(nomTemplate, dom_parent, data){
+        // Si le template a déjà été chargé
         if(this.chargement[nomTemplate])
         {
             let vue = Mustache.render(this.chargement[nomTemplate], data);
             dom_parent.innerHTML = vue;
         }
-        else{
+        else{   // Premier appel au template
             fetch("./vues/"+nomTemplate + ".html")
                 .then((reponse)=> reponse.text())
                 .then((template)=>{
                     this.chargement[nomTemplate] = template;
                     let vue = Mustache.render(template, data);
                     dom_parent.innerHTML = vue;
-                    console.log(this.chargement);
+                    //console.log(this.chargement);
                 })
         }
         

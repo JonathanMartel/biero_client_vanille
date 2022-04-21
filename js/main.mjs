@@ -5,6 +5,7 @@
  * @todo Ajouter une page Détail. Une route supplémentaire /liste/:id_biere qui affiche les détails d'une bière ([nom, brasserie, moyenne, nombre de note, description]) ainsi que les commentaires reçus 
  * @todo (Bonus mais juste pour des points virtuels) Utiliser les partials (mustache) pour gérer les affichages (accueil et liste)
  * @todo (Bonus mais juste pour des points virtuels) Remplacer mustache.js par handlebar.js
+ * @todo (Bonus mais juste pour des points virtuels) Utiliser page.js pour faire les tris (Donc l'url)
  */
  
 import Biere from './Biere.mjs';
@@ -55,7 +56,22 @@ import page from "//unpkg.com/page/page.mjs";
         page({
             hashbang:true
         });   
-    
+        
+        _app.addEventListener("click", (evt)=>{
+            console.log(evt);
+            if(evt.target.classList.contains("btnNomASC")){
+                Biere.getListeBiereTrier({champ:"nom", ordre:"ASC"}).then((listeBiere)=>{
+                    Affichage.chargementTemplate("liste", _app, listeBiere);
+                });
+            
+            }else if(evt.target.classList.contains("btnNomDESC")){
+                Biere.getListeBiereTrier({champ:"nom", ordre:"DESC"}).then((listeBiere)=>{
+                    Affichage.chargementTemplate("liste", _app, listeBiere);
+                });
+            }
+        })
+        
+       
        
         
         
@@ -79,7 +95,7 @@ import page from "//unpkg.com/page/page.mjs";
             console.log(listeBiere); 
             
             Affichage.chargementTemplate("liste", _app, listeBiere);
-
+            
         });
     }
 
@@ -97,11 +113,12 @@ import page from "//unpkg.com/page/page.mjs";
         console.log(ctx, next);
         let log = document.querySelector("[name='log']");
         console.log(log);
-        if(log.checked){
+        next();
+        /*if(log.checked){
             next();
         }
         else{
             console.log("erreur");
-        }
+        }*/
     }
 })()

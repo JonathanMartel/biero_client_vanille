@@ -20,12 +20,50 @@ export default class Biere {
      * @param {object} tri
      * @param {string} tri.champ - Champ sur lequel s'applique le tri
      * @param {string} tri.ordre - ordre du tri (ASC ou DESC)
-     * @returns ?
+     * @returns Object
      * @memberof Biere
      */
-    static getListeBiereTrier (tri){
-       
-     
+    static async getListeBiereTrier (tri){
+        const bieres = await this.getListeBieres();
+        console.log(bieres);
+        bieres.data.sort((a, b)=>{
+            let res =0;
+            if(a[tri.champ].toLowerCase() < b[tri.champ].toLowerCase()){    // Cas limite, la moyenne (à vérifier)
+               res = -1;
+            }
+            else if(a[tri.champ].toLowerCase() > b[tri.champ].toLowerCase()){
+                res = 1;
+            }
+            return res;
+        });
+        if(tri.ordre == "DESC"){
+               bieres.data.reverse();
+        }
+        console.log(bieres.data[0]);
+        console.log(bieres.data[bieres.data.length-1]);
+        return bieres;
+        
+        /*this.getListeBieres().then((bieres)=>{
+            //console.log(bieres.data);
+            bieres.data.sort((a, b)=>{
+                let res =0;
+                if(a[tri.champ].toLowerCase() < b[tri.champ].toLowerCase()){    // Cas limite, la moyenne (à vérifier)
+                   res = -1;
+                }
+                else if(a[tri.champ].toLowerCase() > b[tri.champ].toLowerCase()){
+                    res = 1;
+                }
+                return res;
+           });
+           if(tri.ordre == "DESC"){
+               bieres.data.reverse();
+           }
+           console.log(bieres.data[0]);
+           console.log(bieres.data[bieres.data.length-1]);
+           
+           
+       })*/
+      
     }
     
     /**
@@ -50,7 +88,7 @@ export default class Biere {
      * @memberof Biere
      */
     static getListeBieres (){
-        let donnees;
+        //const donnees;
         const entete = new Headers();
         entete.append("Content-Type", "application/json");
 
